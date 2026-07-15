@@ -13,7 +13,7 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-7 text-center text-[11px] font-black text-slate-400 mb-2 py-1.5 border-b border-slate-100">
+      <div class="grid grid-cols-7 text-center text-sm md:text-base font-extrabold text-slate-500 mb-2 py-1.5 border-b border-slate-100">
         <div class="text-red-500">일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div class="text-sky-500">토</div>
       </div>
 
@@ -28,7 +28,7 @@
           :class="community.getCalendarCellClass(day)"
         >
           <div class="flex justify-between items-center">
-            <span class="text-sm font-black" :class="{ 'text-red-500': day.dayOfWeek === 0, 'text-sky-500': day.dayOfWeek === 6 }">{{ day.day }}</span>
+            <span class="text-base md:text-lg font-black" :class="{ 'text-red-500': day.dayOfWeek === 0, 'text-sky-500': day.dayOfWeek === 6 }">{{ day.day }}</span>
             <span v-if="day.isToday" class="text-[8px] bg-primary text-slate-900 px-1 py-0.5 rounded font-extrabold tracking-tight">Today</span>
           </div>
           <div class="mt-1 space-y-1 overflow-hidden flex-grow flex flex-col justify-end">

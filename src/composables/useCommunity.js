@@ -1,4 +1,4 @@
-import { reactive, computed, nextTick } from 'vue'
+import { reactive, computed, nextTick, onMounted, onBeforeUnmount } from 'vue'
 import { useTabs } from './useTabs'
 
 const STORAGE_KEY = 'localhub_v3_posts'
@@ -74,11 +74,35 @@ const state = reactive({
 
   currentYear: new Date().getFullYear(),
   currentMonth: new Date().getMonth(),
+  todayDate: new Date(),
   selectedCalendarDate: null,
 })
 
 export function useCommunity() {
   const { changeTab } = useTabs()
+
+    let midnightTimer = null
+
+  function refreshTodayDate() {
+    state.todayDate = new Date()
+  }
+
+  onMounted(() => {
+    refreshTodayDate()
+
+    const now = new Date()
+    const nextMidnight = new Date(now)
+    nextMidnight.setHours(24, 0, 0, 0)
+
+    midnightTimer = setTimeout(() => {
+      refreshTodayDate()
+      midnightTimer = setTimeout(refreshTodayDate, 24 * 60 * 60 * 1000)
+    }, nextMidnight - now)
+  })
+
+  onBeforeUnmount(() => {
+    if (midnightTimer) clearTimeout(midnightTimer)
+  })
 
   const sortedPosts = computed(() => {
     let list = state.posts
@@ -251,7 +275,7 @@ export function useCommunity() {
   const calendarActiveDays = computed(() => {
     const total = new Date(state.currentYear, state.currentMonth + 1, 0).getDate()
     const list = []
-    const today = new Date()
+    const today = state.todayDate
     for (let i = 1; i <= total; i++) {
       const dateString = `${state.currentYear}-${String(state.currentMonth + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`
       const isToday = today.getFullYear() === state.currentYear && today.getMonth() === state.currentMonth && today.getDate() === i
