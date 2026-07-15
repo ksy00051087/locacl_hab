@@ -1,0 +1,18 @@
+body {
+  font-family: 'Noto Sans KR', 'Inter', sans-serif;
+  background-color: #F8FAFC;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #E2E8F0; }
+::-webkit-scrollbar-thumb { background: #94A3B8; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+.infinite-viewport { overflow: hidden; width: 100%; }
+.infinite-track { display: flex; gap: 16px; transition: transform 0.5s ease-in-out; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.animate-fade-in { animation: fadeIn 0.3s ease-out; }
+
+@keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+.animate-slide-down { animation: slideDown 0.25s ease-out; }
