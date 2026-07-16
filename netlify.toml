@@ -1,0 +1,9 @@
+[build]
+  base = "locacl_hab"
+  command = "cd locacl_hab && npm install && npm run build"
+  publish = "locacl_hab/dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
