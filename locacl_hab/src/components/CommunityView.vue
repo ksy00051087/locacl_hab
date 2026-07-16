@@ -1,9 +1,9 @@
 <template>
   <div class="space-y-6 animate-fade-in">
     <div class="bg-white rounded-3xl p-5 shadow-xs border border-slate-200">
-      <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 mb-5 space-y-1.5 text-sm">
+      <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 mb-5 space-y-1.5 text-xs">
         <h4 class="font-semibold text-slate-700 flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation text-amber-500 animate-pulse"></i> LocalHub 커뮤니티 이용 수칙 및 안내</h4>
-        <p class="text-sm text-slate-600 font-medium leading-relaxed">
+        <p class="text-xs text-slate-600 font-medium leading-relaxed">
           로컬허브 구미/경북은 따뜻하고 예의 바른 여행 문화를 장려합니다. 본 게시판은 익명 기반으로 작성되며, 4자리 비밀번호 확인을 통해 삭제 및 수정이 안전하게 제어됩니다. 도배, 비방, 허위 모집글 작성 시 이용 정지 조치가 동반될 수 있으니 서로 배려하는 안전 여행을 함께 만들어 주세요.
         </p>
       </div>
