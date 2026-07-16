@@ -13,7 +13,7 @@
           maxlength="4"
           placeholder="숫자 4자리"
           @keydown.enter="community.executeVerifiedAction"
-          class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-center text-xs md:text-sm font-bold tracking-widest outline-none focus:border-primary focus:bg-white"
+          class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-center text-xs md:text-sm font-medium tracking-widest outline-none focus:border-primary focus:bg-white"
         />
         <p v-if="community.state.passwordConfirmError" class="text-xs text-red-500 text-center font-medium">암호가 틀렸습니다. 다시 확인해 보세요.</p>
       </div>

@@ -13,7 +13,7 @@
           <h3 class="font-extrabold text-xl text-slate-700 flex items-center gap-2"><i class="fa-solid fa-comments text-accent"></i> 실시간 익명 소통 보드</h3>
           <p class="text-sm text-slate-400 font-medium mt-1">제목을 터치하여 글 내용을 활성화하고 동행 매칭 및 댓글 대화를 나누어보세요.</p>
         </div>
-        <button @click="community.openPostModal" class="bg-primary hover:bg-primarydark text-slate-700 text-sm font-bold py-2 px-4 rounded-xl flex items-center gap-1.5 shadow-xs transition-all self-stretch sm:self-auto text-center justify-center">
+        <button @click="community.openPostModal" class="bg-primary hover:bg-primarydark text-slate-700 text-sm font-semibold py-2 px-4 rounded-xl flex items-center gap-1.5 shadow-xs transition-all self-stretch sm:self-auto text-center justify-center">
           <i class="fa-solid fa-feather"></i> 게시글 등록하기
         </button>
       </div>
@@ -62,8 +62,8 @@
           <div v-show="post.isOpen" class="border-t border-slate-200 p-4 bg-slate-50/50 rounded-b-2xl animate-fade-in space-y-3.5">
             <div v-if="post.type === 'recruitment'" class="bg-white p-3.5 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div class="text-sm">
-                <p class="font-medium text-slate-800">🤝 함께 가고 싶은 일정에 모집 지원하시겠습니까?</p>
-                <p class="text-slate-400 text-sm mt-0.5">매칭 완료 후 오프라인에서 안전하고 쾌적한 만남을 조율해 보세요.</p>
+                <p class="font-semibold text-slate-800">🤝 함께 가고 싶은 일정에 모집 지원하시겠습니까?</p>
+                <p class="text-slate-400 text-xs mt-0.5">매칭 완료 후 오프라인에서 안전하고 쾌적한 만남을 조율해 보세요.</p>
               </div>
               <button
                 @click="community.enrollInRecruitment(post)"
