@@ -3,7 +3,13 @@ import { reactive } from 'vue'
 const state = reactive({
   chatbotOpen: false,
   chatbotSettingsOpen: false,
-  userApiKey: (() => { try { return localStorage.getItem('localhub_v3_api_key') || '' } catch { return '' } })(),
+  userApiKey: (() => {
+    try {
+      return import.meta.env.VITE_OPENAI_API_KEY || localStorage.getItem('localhub_v3_api_key') || ''
+    } catch {
+      return ''
+    }
+  })(),
   chatbotLoading: false,
   chatbotTextInput: '',
   chatLogs: [
