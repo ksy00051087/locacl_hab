@@ -273,7 +273,7 @@ export function useCommunity() {
 
   function getCalendarCellClass(day) {
     let cls = 'bg-white border-slate-100 hover:border-primary '
-    if (getPostsForSelectedDate(day.dateString).length > 0) cls += 'bg-emerald-50/40 border-primary/60 font-bold '
+    if (getPostsForSelectedDate(day.dateString).length > 0) cls += 'border-primary/60 font-bold '
     if (day.dateString === state.selectedCalendarDate) cls += 'ring-2 ring-primary border-primary '
     return cls
   }

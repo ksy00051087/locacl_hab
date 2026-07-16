@@ -3,7 +3,7 @@
     <div class="bg-white rounded-3xl p-5 shadow-xs border border-slate-200">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-200 pb-4 mb-4">
         <div>
-          <h3 class="font-black text-xl text-slate-800 flex items-center gap-2"><i class="fa-solid fa-calendar-days text-accent"></i> 같이 여행 일정 달력</h3>
+          <h3 class="font-bold text-xl text-slate-800 flex items-center gap-2"><i class="fa-solid fa-calendar-days text-accent"></i> 같이 여행 일정 달력</h3>
           <p class="text-xs text-slate-400 font-semibold mt-1">출발 예정 날짜를 선택하여 일정을 조회하세요.</p>
         </div>
         <div class="flex items-center space-x-2 bg-slate-50 border border-slate-200 rounded-2xl p-1.5 self-stretch sm:self-auto justify-between">
@@ -13,12 +13,12 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-7 text-center text-[11px] font-black text-slate-400 mb-2 py-1.5 border-b border-slate-100">
+      <div class="grid grid-cols-7 text-center text-[17px] font-bold text-slate-400 mb-2 py-1.5 border-b border-slate-100">
         <div class="text-red-500">일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div class="text-sky-500">토</div>
       </div>
 
       <div class="grid grid-cols-7 gap-1 text-sm md:text-base">
-        <div v-for="blank in community.calendarOffsetBlanks.value" :key="'blank-' + blank" class="aspect-square bg-slate-50/40 rounded-2xl border border-transparent"></div>
+        <div v-for="blank in community.calendarOffsetBlanks.value" :key="'blank-' + blank" class="aspect-square bg-slate-100 rounded-2xl border border-transparent pointer-events-none cursor-default"></div>
 
         <div
           v-for="day in community.calendarActiveDays.value"
@@ -28,22 +28,38 @@
           :class="community.getCalendarCellClass(day)"
         >
           <div class="flex justify-between items-center">
-            <span class="text-sm font-black" :class="{ 'text-red-500': day.dayOfWeek === 0, 'text-sky-500': day.dayOfWeek === 6 }">{{ day.day }}</span>
-            <span v-if="day.isToday" class="text-[8px] bg-primary text-slate-900 px-1 py-0.5 rounded font-extrabold tracking-tight">Today</span>
-          </div>
-          <div class="mt-1 space-y-1 overflow-hidden flex-grow flex flex-col justify-end">
-            <div v-for="p in community.getPostsForSelectedDate(day.dateString).slice(0, 2)" :key="p.id" class="text-[9px] bg-emerald-50 border border-emerald-100 text-accent px-1.5 py-0.5 rounded-md flex items-center justify-between font-bold">
-              <span>{{ community.getPostCategoryDetails(p).iconOnly || '🏕️' }}</span>
-              <span>{{ p.currentCount }}/{{ p.maxCount }}</span>
+            <div class="flex items-center">
+              <span v-if="day.isToday" class="flex items-center justify-center w-8 h-8 rounded-full bg-[#0a6e54] text-white text-lg font-bold leading-none">
+                {{ day.day }}
+              </span>
+              <span v-else class="text-lg font-bold" :class="{ 'text-red-500': day.dayOfWeek === 0, 'text-sky-500': day.dayOfWeek === 6 }">
+                {{ day.day }}
+              </span>
             </div>
-            <div v-if="community.getPostsForSelectedDate(day.dateString).length > 2" class="text-[8px] text-accent font-black text-center">+ {{ community.getPostsForSelectedDate(day.dateString).length - 2 }}개 더있음</div>
+
+            <div class="flex items-center">
+              <span v-if="day.isToday" class="text-[14px] font-extrabold tracking-tight" style="color: #0a6e54;">Today</span>
+            </div>
           </div>
+
+          <!-- Today인 경우 숫자와 Today 아래에 하나의 중앙 정렬 가로줄 -->
+          <div v-if="day.isToday" class="absolute left-1/2 transform -translate-x-1/2 top-10 w-28 h-[2px] bg-[#0a6e54] rounded-full pointer-events-none"></div>
+          <div class="mt-1 flex items-end">
+            <div v-if="community.getPostsForSelectedDate(day.dateString).length > 0"
+                class="inline-flex items-center shadow gap-2 px-2 py-0.3 rounded-full bg-emerald-50 border border-emerald-100">
+                <span class="w-2 h-2 rounded-full" style="background:#0a6e54;"></span> <span class="text-[12px] font-bold text-[#0a6e54]"> {{ community.getPostsForSelectedDate(day.dateString).length }}개 일정 </span>
+            </div>
+          </div>
+        </div>
+        <div v-for="n in (7 - (community.calendarOffsetBlanks.value.length + community.calendarActiveDays.value.length) % 7) % 7"
+            :key="'trailing-' + n"
+            class="aspect-square bg-slate-100 rounded-2xl border border-transparent pointer-events-none cursor-default">
         </div>
       </div>
 
       <div v-if="community.state.selectedCalendarDate" class="mt-4 bg-slate-50 rounded-3xl p-4 border border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 animate-fade-in">
         <div class="min-w-0 flex-grow space-y-1.5">
-          <span class="text-[10px] bg-primary text-slate-900 font-black px-3.5 py-1 rounded-full">{{ community.formatSelectedKoreanDate(community.state.selectedCalendarDate) }} 모집 내역</span>
+          <span class="text-[14px] bg-primary text-slate-900 font-bold px-2 py-1 rounded-full">{{ community.formatSelectedKoreanDate(community.state.selectedCalendarDate) }} 모집 내역</span>
           <div class="pt-1 space-y-1.5">
             <div
               v-for="p in community.getPostsForSelectedDate(community.state.selectedCalendarDate)"
