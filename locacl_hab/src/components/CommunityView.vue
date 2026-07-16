@@ -45,7 +45,7 @@
               <div class="flex items-center gap-2 flex-wrap">
                 <span class="text-xs font-medium px-1.5 py-1.5 rounded-md border" :class="post.type === 'recruitment' ? 'bg-emerald-50 border-emerald-200 text-accent' : 'bg-slate-100 border-slate-200 text-slate-700'">{{ post.type === 'recruitment' ? '모집' : '일반' }}</span>
                 <span class="text-xs bg-slate-50 border border-slate-200 font-medium text-slate-500 px-1.5 py-1.5 rounded-md">{{ post.region }}</span>
-                <span v-if="post.type === 'recruitment'" class="text-xs bg-emerald-50 text-accent border border-emerald-200 font-medium px-1.5 py-1.5 rounded-md"><i class="fa-regular fa-calendar-check text-[10px]"></i> 출발: {{ post.travelDate }}</span>
+                <span v-if="post.type === 'recruitment'" class="text-xs bg-emerald-50 text-accent border border-emerald-200 font-medium px-1.5 py-1.5 rounded-md"><i class="fa-regular fa-calendar-check text-xs"></i> 출발: {{ post.travelDate }}</span>
               </div>
               <h4 class="font-semibold text-base md:text-lg text-slate-800 flex items-center gap-2">
                 <span v-if="post.type === 'recruitment'" class="text-accent"><i class="fa-solid fa-users"></i></span>
@@ -54,7 +54,13 @@
               </h4>
             </div>
             <div class="flex items-center space-x-3 shrink-0 self-center">
-              <span v-if="post.type === 'recruitment'" class="text-sm bg-slate-100 text-accent border border-emerald-100 font-medium px-1.5 py-1.5 rounded-lg">👥 {{ post.currentCount }} / {{ post.maxCount }}</span>
+              <span
+                v-if="post.type === 'recruitment'"
+                class="inline-flex items-center justify-center text-base bg-slate-100 text-accent border border-emerald-100 font-medium px-3 py-1.5 rounded-lg"
+>
+               <span class="relative -top-0.5">👥</span>
+               <span class="ml-1"> {{ post.currentCount }} / {{ post.maxCount }}</span>
+              </span>
               <span class="text-slate-400 text-base"><i class="fa-solid" :class="post.isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i></span>
             </div>
           </div>
